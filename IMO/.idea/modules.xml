@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/IMO.iml" filepath="$PROJECT_DIR$/IMO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/palindrome/palindrome.iml" filepath="$PROJECT_DIR$/palindrome/palindrome.iml" />
+      <module fileurl="file://$PROJECT_DIR$/the-primes-94/the-primes-94.iml" filepath="$PROJECT_DIR$/the-primes-94/the-primes-94.iml" />
+      <module fileurl="file://$PROJECT_DIR$/triangle-94/triangle-94.iml" filepath="$PROJECT_DIR$/triangle-94/triangle-94.iml" />
+      <module fileurl="file://$PROJECT_DIR$/walls-2000/walls-2000.iml" filepath="$PROJECT_DIR$/walls-2000/walls-2000.iml" />
+    </modules>
+  </component>
+</project>
