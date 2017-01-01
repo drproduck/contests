@@ -56,8 +56,8 @@
       <file leaf-file-name="divisor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/untitled/src/divisor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="31" column="35" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+            <state relative-caret-position="381">
+              <caret line="89" column="9" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -489,7 +489,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/untitled/src/divisor.java</url>
-          <line>18</line>
+          <line>19</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
@@ -545,8 +545,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/untitled/src/divisor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="31" column="35" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+        <state relative-caret-position="381">
+          <caret line="89" column="9" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
           <folding />
         </state>
       </provider>
