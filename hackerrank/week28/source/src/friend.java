@@ -26,7 +26,6 @@ public class friend {
                     roots) {
                 max += root.size * (root.size - 1);
             }
-            System.out.println(max);
             ds.total = total;
             ds.max = max;
             for (Node root : roots) {
@@ -34,7 +33,6 @@ public class friend {
                 ds.iterate(root);
             }
             str.append(ds.total);
-            System.out.println(ds.toString());
         };
         System.out.println(str);
     }
