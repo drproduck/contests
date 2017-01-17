@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class eight {
     public static final int divisor = (int) (Math.pow(10, 9) + 7);
     public static void main(String[] args) {
-        Ranked
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         String number = in.next();
