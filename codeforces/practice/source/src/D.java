@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -18,16 +17,14 @@ public class D {
         StringBuffer str = new StringBuffer();
         do {
             st.increment(t);
-            int t2 = (t+k)%n;
+            int t2 = (t + k) % n;
             st.increment(t2);
-            int tt = (t+1)%n;
+            int tt = (t + 1) % n;
             int tt2 = (t2 == 0) ? n - 1 : (t2 - 1) % n;
             num = num + 1 + st.rsq(tt, tt2);
             t = t2;
             str.append(num + " ");
         } while (t != 1);
-        System.out.println(Arrays.toString(st.a));
-        System.out.println(Arrays.toString(st.st));
         System.out.println(str.toString());
     }
 
@@ -38,27 +35,29 @@ public class D {
 
         /**
          * everything is 0 in the beginning
+         *
          * @param n
          */
         public SegmentTree(int n) {
             a = new int[n];
-            st = new int[3*n];
-            this.n  = n ;
-            build(1, 0, n-1);
+            st = new int[4 * n];
+            this.n = n;
+            build(1, 0, n - 1);
         }
 
         public SegmentTree(int n, int[] array) {
             a = array;
             this.n = n;
-            st = new int[4 * n];
+            st = new int[2 * n + 2];
             build(1, 0, n - 1);
         }
+
         int left(int p) {
             return p << 1;
         }
 
         int right(int p) {
-            return (p << 1) +1;
+            return (p << 1) + 1;
         }
 
         int[] st() {
@@ -77,10 +76,10 @@ public class D {
         }
 
         int rsq(int i, int j) {
-            if (i<= j)
-            return rsq(1, 0, n - 1, i, j);
-            else if (i == j+1) return st[1];
-            else return st[1] - rsq(1, 0, n - 1, j+1, i-1);
+            if (i <= j)
+                return rsq(1, 0, n - 1, i, j);
+            else if (i == j + 1) return st[1];
+            else return st[1] - rsq(1, 0, n - 1, j + 1, i - 1);
         }
 
         int rsq(int p, int L, int R, int i, int j) {
@@ -90,7 +89,7 @@ public class D {
             if (L >= i && R <= j) {
                 return st[p];
             }
-            return rsq(left(p), L, (L + R) / 2, i, j) + rsq(right(p), (L + R) / 2 + 1, R,  i, j);
+            return rsq(left(p), L, (L + R) / 2, i, j) + rsq(right(p), (L + R) / 2 + 1, R, i, j);
         }
 
         int update(int newVal, int pos) {
@@ -100,36 +99,37 @@ public class D {
             int dif = newVal - oldVal;
             int p = 1;
             int L = 0;
-            int R = n-1;
-            while (L!=R) {
+            int R = n - 1;
+            while (L != R) {
                 st[p] += dif;
                 if (pos < (L + R) / 2 + 1) {
                     R = (L + R) / 2;
-                    p = p*2;
+                    p = p * 2;
                 } else {
-                    L = (L + R) / 2+1;
-                    p = p*2+1;
+                    L = (L + R) / 2 + 1;
+                    p = p * 2 + 1;
                 }
             }
             return oldVal;
         }
 
-                int increment(int pos) {
-                    int oldVal = a[pos];
-                    a[pos] ++;
-                    int dif = 1;
-                    int p = 1;
-                    int L = 0;
-                    int R = n-1;
-                    while (L!=R) {
-                st[p] += dif;
+        int increment(int pos) {
+            int oldVal = a[pos];
+            a[pos]++;
+            int dif = 1;
+            int p = 1;
+            int L = 0;
+            int R = n - 1;
+            st[p] += dif;
+            while (L != R) {
                 if (pos < (L + R) / 2 + 1) {
                     R = (L + R) / 2;
-                    p = p*2;
+                    p = p * 2;
                 } else {
-                    L = (L + R) / 2+1;
-                    p = p*2+1;
+                    L = (L + R) / 2 + 1;
+                    p = p * 2 + 1;
                 }
+                st[p] += dif;
             }
             return oldVal;
         }
