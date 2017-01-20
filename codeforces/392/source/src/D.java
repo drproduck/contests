@@ -7,7 +7,7 @@ import java.util.Stack;
 public class D {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        long k = in.nextLong();
+        int k = in.nextInt();
         String n = in.next();
         Stack<Long> a = new Stack();
         long b = 0;
@@ -17,32 +17,29 @@ public class D {
         for (int i = n.length() - 1; i >= 0; i--) {
             int c = Character.getNumericValue(n.charAt(i));
             if (c == 0) {
-                lastNumZ = true;
                 numZ++;
+                lastNumZ = true;
                 radix++;
             } else {
-                if (b + c * Math.pow(10, radix) > k) {
+                if (b + (int) Math.pow(10, radix) > k) {
+                    if (b!=0)
                     a.push(b);
-                    if (!lastNumZ) {
-                        i++;
-                        while (numZ > 0) {
-                            a.push(0L);
-                            numZ--;
-                        }
-                    } else {
+                    i++;
+                    if (lastNumZ) {
                         radix = numZ;
-                    }
+                        numZ = 0;
+                    } else while (numZ > 0) {
+                            a.push(0L);
+                            numZ --;
+                        }
                     b = 0;
-                    numZ = 0;
                     lastNumZ = false;
-                }
-                else {
-                    b += c * Math.pow(10, radix);
+                } else {
+                    b += c * (int) Math.pow(10, radix);
                     radix++;
-                    lastNumZ  = false;
+                    lastNumZ = false;
                     numZ = 0;
                 }
-
             }
         }
         if (b != 0) {
@@ -54,7 +51,6 @@ public class D {
             long x = a.pop();
             sum += (x * (long) Math.pow(k, radix));
             radix--;
-            System.out.println(x);
         }
         System.out.println(sum);
     }
