@@ -26,7 +26,7 @@ public class C {
             sum += p[i][0];
             i++;
         }
-        while (p[i][2] < 0) {
+        while (i<n&&p[i][2] < 0) {
             sum += p[i][0];
             i++;
         }
