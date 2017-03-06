@@ -43,17 +43,3 @@ class Trip<X, Y, Z>{
 class LeftSide{
 
 }
-
-class Value extends LeftSide extends Operand {
-    Integer value;
-
-    public Value(Integer value) {
-        this.value = value;
-    }
-}
-class Operand {
-
-}
-
-class Variable extends Operand {
-}
