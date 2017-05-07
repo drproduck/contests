@@ -13,42 +13,21 @@ public class B  {
         int n = in.nextInt();
         int m = in.nextInt();
 
-        HashSet<Integer>[] a = new HashSet[n];
-        for (int i = 0; i < n; i++) {
-            a[i] = new HashSet<Integer>();
-        }
+        int[] deg = new int[n];
+        RankedDisjointSets ds = new RankedDisjointSets(n);
         for (int i = 0; i < m; i++) {
             int x = in.nextInt()-1;
             int y = in.nextInt()-1;
-            a[x].add(y);
-            a[y].add(x);
+            ds.union(x, y);
+            deg[x] ++;
+            deg[y] ++;
         }
-        boolean[] vis = new boolean[n];
         boolean res = true;
         for (int i = 0; i < n; i++) {
-            if (!vis[i]) {
-                HashSet<Integer> s = a[i];
-                vis[i] = true;
-                for (Integer x :
-                        s) {
-                    if (!vis[x]) {
-                        HashSet<Integer> t = a[x];
-                        vis[x] = true;
-                        if (s.size() != t.size()) res = false;
-                        else {
-                            for (Integer y :
-                                    t) {
-                                if (i!=y&&!s.contains(y)) {
-                                    res = false;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    if (!res) break;
-                }
+            if (deg[i] != ds.size(i)-1) {
+                res = false;
+                break;
             }
-            if (!res) break;
         }
         if (res) System.out.println("YES");
         else System.out.println("NO");
@@ -56,5 +35,87 @@ public class B  {
 }
 
 
+abstract class DisjointSets {
+
+    public int[] getParents() {
+        return parents;
+    }
+
+    public int getNumElements() {
+        return numElements;
+    }
+
+    protected int[] parents;
+    protected int numElements;
+
+    public DisjointSets(int numElements) {
+        this.numElements = numElements;
+        parents = new int[numElements];
+    }
+
+    abstract void union(int x, int y);
+
+    abstract int find(int x);
+
+    abstract int size(int x);
+}
+
+class RankedDisjointSets extends DisjointSets {
+    private int[] size;
+
+    public RankedDisjointSets(int numElements) {
+        super(numElements);
+        for (int i = 0; i < numElements; i++) {
+            parents[i] = -1;
+        }
+        size = new int[numElements];
+        for (int i = 0; i < numElements; i++) {
+            size[i] = 1;
+        }
+    }
+
+    /**
+     * union-by-rank: each node initially has rank 1.Each time 2 trees are concatenated,
+     * the root of the tree with smaller rank will be linked to the root of the bigger one
+     * rank is not necessarily height as path compression with alter heights online
+     */
+    public void union(int x, int y) {
+        x = find(x);
+        y = find(y);
+        if (x != y) {
+            if (parents[y] < parents[x]) {
+                parents[x] = y;
+                size[y] += size[x];
+            } else {
+                if (parents[x] == parents[y]) {
+                    parents[x]--;
+                }
+                parents[y] = x;
+                size[x] += size[y];
+            }
+        }
+    }
+
+    /**
+     * path-compression: Each time 2 trees are joined, the nodes that are traversed in the smaller tree
+     * will be linked to the root of the larger tree. This makes the tree less deep, allowing faster
+     * access in next find. It has been shown that the amortized find is practically below 5 (though unbounded)
+     *
+     * @param x
+     * @return
+     */
+    public int find(int x) {
+        if (parents[x] < 0) {
+            return x;
+        } else {
+            return parents[x] = find(parents[x]);
+        }
+
+    }
+
+    public int size(int x) {
+        return size[find(x)];
+    }
+}
 
 

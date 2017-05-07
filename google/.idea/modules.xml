@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/File Fix-it/File Fix-it.iml" filepath="$PROJECT_DIR$/File Fix-it/File Fix-it.iml" />
       <module fileurl="file://$PROJECT_DIR$/google.iml" filepath="$PROJECT_DIR$/google.iml" />
       <module fileurl="file://$PROJECT_DIR$/hackerrank/hackerrank.iml" filepath="$PROJECT_DIR$/hackerrank/hackerrank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quali/quali.iml" filepath="$PROJECT_DIR$/quali/quali.iml" />
     </modules>
   </component>
 </project>
